@@ -25,8 +25,7 @@ java -jar target/ignite-poc*.jar
 You can also use the Swagger-UI to test the application.
 ![Swagger-UI](starter-demo.png)
 
-for more detailed technical information please check my
-post : <https://dassum.medium.com/building-a-reactive-restful-web-service-using-spring-boot-and-postgres-c8e157dbc81d>
+for more detailed technical information please check my post : <>
 
 The server will start at <http://localhost:9051>.
 
