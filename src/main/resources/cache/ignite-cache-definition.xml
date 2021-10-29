@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="defaultIgniteExpirePolicy" class="javax.cache.expiry.ModifiedExpiryPolicy" factory-method="factoryOf">
+        <constructor-arg>
+            <bean class="javax.cache.expiry.Duration">
+                <constructor-arg value="DAYS"/>
+                <constructor-arg value="1"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="igniteCacheConfigurationTemplate" class="org.apache.ignite.configuration.CacheConfiguration"
+          abstract="true">
+        <property name="cacheMode" value="REPLICATED"/>
+        <property name="indexedTypes" value="java.lang.Long,com.test.cache.ignitepoc.model.Player"/>
+        <property name="atomicityMode" value="ATOMIC"/>
+        <property name="expiryPolicyFactory" ref="defaultIgniteExpirePolicy"/>
+        <property name="eagerTtl" value="true"/>
+        <property name="statisticsEnabled" value="true"/>
+    </bean>
+    <util:list id="igniteCacheDefinition">
+        <!--bean parent="igniteCacheConfigurationTemplate">
+            <property name="name">
+                <util:constant static-field="com.test.cache.ignitepoc.constant.CacheConstant.PLAYER"/>
+            </property>
+        </bean-->
+    </util:list>
+</beans>

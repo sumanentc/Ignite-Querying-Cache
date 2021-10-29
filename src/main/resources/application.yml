@@ -1,0 +1,16 @@
+server:
+  port: 9051
+
+spring:
+  application:
+    name: ignite-poc
+  cache:
+    type: jcache
+    jcache:
+      provider: org.apache.ignite.cache.CachingProvider
+      config: classpath:cache/ignite-cache-local.xml
+
+springdoc:
+  api-docs:
+    path: /docs
+

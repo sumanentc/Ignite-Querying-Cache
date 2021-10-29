@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="classpath:cache/ignite-cache-definition.xml"/>
+    <bean id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="metricsLogFrequency" value="60000"/>
+        <property name="peerClassLoadingEnabled" value="true"/>
+        <property name="sqlConfiguration">
+            <bean class="org.apache.ignite.configuration.SqlConfiguration">
+                <property name="sqlGlobalMemoryQuota" value="300M"/>
+                <property name="sqlQueryMemoryQuota" value="30M"/>
+                <property name="sqlOffloadingEnabled" value="true"/>
+            </bean>
+        </property>
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="localPort" value="57501"/>
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <value>localhost:57501</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+                <property name="NetworkTimeout" value="30000"/>
+            </bean>
+        </property>
+        <property name="communicationSpi">
+            <bean class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
+                <property name="localPort" value="57101"/>
+            </bean>
+        </property>
+        <property name="cacheConfiguration" ref="igniteCacheDefinition"/>
+    </bean>
+</beans>
