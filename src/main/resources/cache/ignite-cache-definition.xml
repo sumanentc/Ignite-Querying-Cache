@@ -26,10 +26,10 @@
         <property name="statisticsEnabled" value="true"/>
     </bean>
     <util:list id="igniteCacheDefinition">
-        <!--bean parent="igniteCacheConfigurationTemplate">
+        <bean parent="igniteCacheConfigurationTemplate">
             <property name="name">
                 <util:constant static-field="com.test.cache.ignitepoc.constant.CacheConstant.PLAYER"/>
             </property>
-        </bean-->
+        </bean>
     </util:list>
 </beans>
