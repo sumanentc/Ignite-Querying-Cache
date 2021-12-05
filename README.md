@@ -44,7 +44,7 @@ The application contains the following REST APIs
 
 4. /players/fuzzy/search/{text} - Search All Players using Fuzzy TextQuery where either name or team contains the given text
 
-5. /players/fuzzy/search/{text}/{fieldName} - Search All Players using Fuzzy TextQuery and fieldName where fieldName contain the given text
+5. /players/fuzzy/search/{text}/{fieldName} - Search All Players using Fuzzy TextQuery with fieldName where fieldName contain the given text
 
 ```
 
